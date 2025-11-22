@@ -1,18 +1,28 @@
 <?php
-include './pages/db.php';
+include './db.php';
 
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['uname'];
-    $pass = $_POST['password'];
-    $st = $conn->prepare('select * from user where name=?');
-    $st->bind_param('s',$name);
+    $pass = $_POST['pass'];
+
+    $st = $conn->prepare('select uname,password from user where uname=?');
+    $st->bind_param('s', $name);
     $st->execute();
     $st->store_result();
-    $st->bind_result($password);
-    if($st->fetch() && password_verify($pass,$password)){
-        header('location:./home.php');
+
+    $st->bind_result($u_name, $password);
+
+    if ($st->fetch() && password_verify($pass, $password)) {
+        // header('location:./home.php');
+        $_SESSION['name'] = $name;
+        echo "Welcome back";
+    } else if ($name != $u_name) {
+        header('location:./register.php');
+    } else {
+        $misspass = "Wrong Password";
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -34,12 +44,16 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 <label for="username">Username</label>
             </div>
             <div class="form-floating">
-                <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <input type="password" name="pass" class="form-control" id="floatingPassword" placeholder="Password">
                 <label for="floatingPassword">Password</label>
+
             </div>
             <button type="submit" class="btn btn-primary mt-3">Submit</button>
             <hr>
-            <a href="./pages/register.php">New here.?</a>
+            <a href="./register.php">New here.?</a>
+            <p>
+                <?php echo (!empty($misspass)) ? $misspass : "Welcome"; ?>
+            </p>
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
