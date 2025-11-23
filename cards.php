@@ -11,10 +11,10 @@
     <div class="row gap-3 mt-3 w-100 pb-5" style="padding-left: 25px;">
         <div class="card col border-2" style="width: 18rem; height:32rem;">
             <img src="./images/alina.jpg" class="card-img-top p-2" style="height: 18rem;" alt="...">
-            <div class="card-body">
+            <div class="card-body" id="card1">
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-                <a href="#" class="btn btn-primary">Buy</a>
+                <a href="./home.php#card1" class="btn btn-primary">Buy</a>
             </div>
         </div>
         <div class="card col border-2" style="width: 18rem; height:32rem">
