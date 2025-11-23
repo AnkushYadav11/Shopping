@@ -13,9 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $st->bind_result($u_name, $password);
 
     if ($st->fetch() && password_verify($pass, $password)) {
-        // header('location:./home.php');
         $_SESSION['name'] = $name;
-        echo "Welcome back";
+        header('location:./home.php');
     } else if ($name != $u_name) {
         header('location:./register.php');
     } else {
