@@ -1,6 +1,5 @@
 <?php
 include './db.php';
-
 ?>
 
 <!DOCTYPE html>
@@ -13,8 +12,8 @@ include './db.php';
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark text-light bg-dark">
-        <a class="navbar-brand" href="#"><img src="./images/logo.png" style="width:30px; height:28px;" alt="logo"></a>
+    <nav class="navbar navbar-expand-lg navbar-dark text-light bg-dark pe-5">
+        <a class="navbar-brand" href="./home.php"><img src="./images/logo.png" style="width:30px; height:28px;" alt="logo"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -22,7 +21,7 @@ include './db.php';
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="./home.php">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">About</a>
@@ -35,9 +34,9 @@ include './db.php';
         <div class="d-flex">
             <div class="dropdown">
                 <a class="btn btn-secondary " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Hey, <?= (!empty($_SESSION['name']))? $_SESSION['name'] :"Please Login"; ?>
+                    Hey, <?= (!empty($_SESSION['name'])) ? $_SESSION['name'] : "Please Login"; ?>
                 </a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu w-5">
                     <li><a class="dropdown-item" href="#">Profile</a></li>
                     <li><a class="dropdown-item" href="#">Logout</a></li>
                 </ul>
